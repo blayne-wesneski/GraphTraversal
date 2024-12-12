@@ -2,7 +2,7 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 public class Graph {
-    private LinkedList<Node> nodes;
+    LinkedList<Node> nodes;
 
     public Graph() {
         nodes = new LinkedList<>();
@@ -13,7 +13,7 @@ public class Graph {
         return nodes.add(v);
     }
 
-    public boolean addEdge(Node from, Node to, int weight) {
+    public boolean addEdge(Node from, Node to, double weight) {
         return from.edges.add(new Edge(from, to, weight));
     }
 
@@ -48,7 +48,7 @@ public class Graph {
                     continue;
                 }
 
-                int newDistance = curr.distance + edge.weight;
+                double newDistance = curr.distance + edge.weight;
                 System.out.println("\t\t New distance: " + newDistance);
 
                 System.out.println(
@@ -96,7 +96,7 @@ public class Graph {
      * @return
      */
     private Node getSmallestDistanceVisitedNode() {
-        int min = Integer.MAX_VALUE;
+        double min = Integer.MAX_VALUE;
         Node candidate = null;
 
         for (Node n : nodes) {
