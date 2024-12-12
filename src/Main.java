@@ -27,7 +27,7 @@ public class Main {
                 Node node = new Node(id,tokens[4],lat,lon);
 
                 graph.addNode(node);
-                System.out.println("Added node: " + node.id);
+               // System.out.println("Added node: " + node.id);
             }
 
             int edges = Integer.parseInt(scanner.nextLine());
@@ -51,7 +51,7 @@ public class Main {
                     graph.addEdge(node2, node1, Haversine.haversine(node2.lat, node2.lon, node1.lat, node1.lon));
                 }
 
-                System.out.println("Added edge: " + (i + 1));
+                //System.out.println("Added edge: " + (i + 1));
             }
 
             int cases = Integer.parseInt(scanner.nextLine());

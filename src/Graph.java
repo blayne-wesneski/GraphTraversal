@@ -30,11 +30,11 @@ public class Graph {
         resetDistanceData();
 
         Node curr = start;
-        curr.distance = 0;
+        start.distance = 0;
 
+        System.out.println("Routing from " + start + " (" + start.id + ")" + " to " + end + "(" + end.id + ")");
+        System.out.println("Start art " + start + " (" + start.id + ")");
         while (curr != null) {
-            System.out.println("Current node is " + curr);
-
             if (curr == end) {
                 break;
             }
@@ -42,19 +42,14 @@ public class Graph {
             // process all the edges
             for (int i = 0; i < curr.edges.size(); i++) {
                 Edge edge = curr.edges.get(i);
-                System.out.println("\tEdge " + (i + 1) + " " + edge + " visited? " + edge.end.visited);
 
                 if (edge.end.visited) {
                     continue;
                 }
 
                 double newDistance = curr.distance + edge.weight;
-                System.out.println("\t\t New distance: " + newDistance);
 
-                System.out.println(
-                        "\t\t New Distance < Edge Distance: " + newDistance + " < " + edge.end.distance + " ?");
                 if (newDistance < edge.end.distance) {
-                    System.out.println("\t\t Smaller distance found. Updating.");
                     edge.end.distance = newDistance;
                     edge.end.prev = curr;
                 }
@@ -63,17 +58,15 @@ public class Graph {
             curr.visited = true;
 
             curr = getSmallestDistanceVisitedNode();
-            System.out.println("curr is now " + curr);
 
             Stack<Node> path = new Stack<>();
-            curr = end;
-            while (curr != null) {
-                path.push(curr);
-                curr = curr.prev;
+            while (end != null) {
+                path.push(end);
+                end = end.prev;
             }
             while (!path.isEmpty()) {
                 Node n = path.pop();
-                System.out.println(n + " (" + n.distance + ")");
+                System.out.println("Go to " + n + " (" + n.id + ")");
             }
         }
     }
